@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import { Button as ButtonComponent } from 'antd'
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   height: 100px;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 8px 8px rgba(3, 3, 3, 0.2);
+  box-shadow: 0 0 16px rgba(3, 3, 3, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +16,7 @@ export const Wrapper = styled.div`
     height: 50px;
     padding: 0 12px;
   }
-`;
+`
 
 export const Main = styled.div`
   display: flex;
@@ -25,24 +26,29 @@ export const Main = styled.div`
   @media only screen and (max-width: 600px) {
     column-gap: 12px;
   }
-`;
+`
 
 export const Actions = styled.div`
   display: flex;
   align-items: center;
   column-gap: 24px;
-`;
+
+  @media only screen and (max-width: 1024px) {
+    column-gap: 12px;
+  }
+`
 
 export const Title = styled.h1`
   color: #333;
   font-size: 36px;
+  cursor: pointer;
 
   @media only screen and (max-width: 600px) {
     font-size: 24px;
   }
-`;
+`
 
-export const IconPrimary = styled.div`
+export const Icon = styled.div`
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -56,29 +62,55 @@ export const IconPrimary = styled.div`
     width: 24px;
     height: 24px;
   }
-`;
+`
 export const Text = styled.p`
   color: #555;
   font-size: 16px;
-`;
+`
 
-export const Views = styled.div`
+export const ButtonGroup = styled.div<{ hideOnMobile?: boolean }>`
   display: flex;
   align-items: center;
   column-gap: 12px;
 
-  @media only screen and (max-width: 600px) {
+  ${({ hideOnMobile }) =>
+    hideOnMobile &&
+    `@media only screen and (max-width: 600px) {
     display: none;
-  }
-`;
+  }`}
+`
 
-export const IconSecondary = styled.div<{active?: boolean}>`
+export const IconButton = styled.div<{ active?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
   padding: 4px;
   cursor: pointer;
   border-radius: 4px;
-  background-color: ${({active}) => active ? "#aaa" : "none"};
-  color: ${({active}) => active ? "black" : "#555"};
-  transition: all .2s ease-in;
-`;
+  background-color: ${({ active }) => (active ? '#aaa' : 'none')};
+  color: ${({ active }) => (active ? 'black' : '#555')};
+  transition: all 0.2s ease-in;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #ccc;
+  }
+`
+
+export const Separator = styled.div`
+  height: 32px;
+  width: 1px;
+  background-color: #555;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+`
+
+export const Button = styled(ButtonComponent)`
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+`

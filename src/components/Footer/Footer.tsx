@@ -1,38 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
-import { countries } from "../../constants/countries";
-import { Countries } from "../../types/Countries";
-import { Wrapper } from "./Footer.style";
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
+import { useAppSelector } from '../../redux/hooks'
+import { countries } from '../../constants/countries'
+import { Countries } from '../../types/Countries'
+import { Wrapper } from './Footer.style'
 
-const Footer = () => {
-    const [date, setDate] = useState(new Date())
-    const params = useParams();
-    const country = countries[params.country as Countries];
-    const news = useAppSelector(state => state.news.byCountry)
-    const newsLoading = useAppSelector((state) => state.news.isLoading);
-    const { t } = useTranslation("other")
+interface FooterProps {
+  className?: string
+}
 
-    useEffect(() => {
-        const timerId = setInterval(() => {
-            setDate(new Date())
-        }, 1000)
-        return () => clearInterval(timerId)
-    }, [])
+const Footer = ({ className }: FooterProps) => {
+  const [date, setDate] = useState(new Date())
+  const params = useParams()
+  const country = countries[params.country as Countries]
+  const news = useAppSelector((state) => state.news.byCountry)
+  const newsLoading = useAppSelector((state) => state.news.isLoading)
+  const { t } = useTranslation('other')
 
-    return (
-      <Wrapper>
-        <p>{date.toLocaleTimeString()}</p>
-        {country && (
-          <p>
-            {newsLoading
-              ? "Loading"
-              : t("articles", { count: news[country]?.totalArticles })}
-          </p>
-        )}
-      </Wrapper>
-    );
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setDate(new Date())
+    }, 1000)
+    return () => clearInterval(timerId)
+  }, [])
+
+  return (
+    <Wrapper className={className}>
+      <p data-testid="time">{date.toLocaleTimeString()}</p>
+      {country && (
+        <p data-testid="counter">
+          {newsLoading
+            ? 'Loading'
+            : t('articles', { count: news[country]?.totalArticles || 0 })}
+        </p>
+      )}
+    </Wrapper>
+  )
 }
 
 export default Footer

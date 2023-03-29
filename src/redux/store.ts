@@ -1,13 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
-import viewTypeReducer from "./slices/viewTypSlice";
-import drawerReducer from "./slices/drawerSlice";
-import newsReducer from "./slices/newsSlice";
+import {
+  combineReducers,
+  configureStore,
+  PreloadedState,
+} from '@reduxjs/toolkit'
+import viewTypeReducer from './slices/viewTypeSlice'
+import drawerReducer from './slices/drawerSlice'
+import newsReducer from './slices/newsSlice'
 
-export const store = configureStore({reducer: {
-    viewType: viewTypeReducer,
-    drawer: drawerReducer,
-    news: newsReducer
-}})
+const rootReducer = combineReducers({
+  viewType: viewTypeReducer,
+  drawer: drawerReducer,
+  news: newsReducer,
+})
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  })
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']

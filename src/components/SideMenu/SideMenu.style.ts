@@ -1,51 +1,61 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { ReactComponent as CloseIcon } from "../../assets/close.svg";
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import { ReactComponent as CloseIcon } from '../../assets/close.svg'
 
 export const Wrapper = styled.div<{ visible: boolean }>`
-  padding: 24px 12px;
+  padding: 24px;
   min-width: 300px;
-  background-color: rgba(3, 3, 3, 0.5);
-  overflow-y: scroll;
+  background-color: rgba(3, 3, 3, 0.4);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all .2s ease-in;
-  height: 100%;
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  transition: all 0.2s ease-in;
 
   @media only screen and (max-width: 1024px) {
-    position: absolute;
+    background-color: rgba(3, 3, 3, 0.7);
+    position: fixed;
     top: 100px;
     left: 0;
     width: 100%;
     height: calc(100% - 100px);
     opacity: ${({ visible }) => (visible ? 1 : 0)};
-    pointer-events: ${({ visible }) => (visible ? undefined : "none")};
+    pointer-events: ${({ visible }) => (visible ? undefined : 'none')};
     min-width: auto;
+
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   @media only screen and (max-width: 600px) {
     top: 50px;
     height: calc(100% - 50px);
   }
-`;
+`
+
+export const Sticky = styled.div`
+  position: sticky;
+  top: 124px;
+  width: 100%;
+
+  @media only screen and (max-width: 1024px) {
+    top: 0;
+    width: initial;
+  }
+`
 
 export const CountryList = styled.ul`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
   align-items: center;
-  justify-content: center;
   list-style: none;
   width: 100%;
   height: 100%;
-`;
+`
 
 export const Country = styled.li`
   font-size: 20px;
@@ -56,7 +66,7 @@ export const Country = styled.li`
   &:last-of-type {
     margin-bottom: 12px;
   }
-`;
+`
 
 export const Link = styled(NavLink)`
   display: flex;
@@ -85,12 +95,12 @@ export const Link = styled(NavLink)`
   @media only screen and (max-width: 1024px) {
     justify-content: center;
   }
-`;
+`
 
 export const Flag = styled.div`
   width: 24px;
   height: 24px;
-`;
+`
 
 export const Close = styled(CloseIcon)`
   width: 32px;
@@ -100,4 +110,4 @@ export const Close = styled(CloseIcon)`
   position: absolute;
   top: 36px;
   left: 36px;
-`;
+`

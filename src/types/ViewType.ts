@@ -1,1 +1,1 @@
-export type ViewTypeValue = "list" | "grid";
+export type ViewTypeValue = 'list' | 'grid'

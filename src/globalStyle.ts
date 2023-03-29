@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   * {
@@ -7,4 +7,15 @@ export default createGlobalStyle`
     padding: 0;
     font-family: 'Roboto', sans-serif;
   }
-`;
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+  }
+  .no-scroll {
+    @media only screen and (max-width: 1024px) {
+      overflow: hidden;
+    }
+  }
+`

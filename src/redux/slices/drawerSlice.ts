@@ -1,26 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 interface ViewTypeState {
-  value: boolean;
+  open: boolean
 }
 
 const initialState: ViewTypeState = {
-  value: false,
-};
+  open: false,
+}
 
 export const drawerSlice = createSlice({
-  name: "drawer",
+  name: 'drawer',
   initialState,
   reducers: {
     toggleDrawer: (state) => {
-      state.value = !state.value
+      state.open = !state.open
     },
     closeDrawer: (state) => {
-      state.value = false
-    }
+      state.open = false
+    },
   },
-});
+})
 
-export const { toggleDrawer, closeDrawer } = drawerSlice.actions;
+export const { toggleDrawer, closeDrawer } = drawerSlice.actions
 
-export default drawerSlice.reducer;
+export default drawerSlice.reducer
