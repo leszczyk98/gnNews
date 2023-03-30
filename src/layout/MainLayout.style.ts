@@ -23,18 +23,13 @@ export const Wrapper = styled.div`
     grid-template-rows: 100px 1fr 100px;
   }
   @media only screen and (max-width: 600px) {
-    grid-template-areas:
-      'navbar'
-      'main'
-      'footer';
-    grid-template-columns: 1fr;
     grid-template-rows: 50px 1fr 50px;
   }
 `
 
 export const TopBar = styled(TopBarComponent)`
   grid-area: navbar;
-  position: sticky;
+  position: fixed;
   top: 0;
 `
 

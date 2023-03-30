@@ -7,10 +7,7 @@ export default createGlobalStyle`
     padding: 0;
     font-family: 'Roboto', sans-serif;
   }
-  html {
-    height: 100%;
-  }
-  body {
+  html, body, #root {
     height: 100%;
   }
   .no-scroll {
